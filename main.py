@@ -99,23 +99,24 @@ def get_books(url):
 
 ## fonction principale du programme
 def main():
-    chrono = datetime.datetime.now()
-    print('main deb: ', chrono)
+    #chrono = datetime.datetime.now()
+    #print('main deb: ', chrono)
 
     url_page = 'http://books.toscrape.com/index.html'
     categories_liens_df = pd.DataFrame(rec_categories_livres(url_page), columns=['categorie', 'lien'])
     try:
         os.mkdir('./fichiers_csv')
     except Exception:
-        print ('directory existante')
+        pass
     for row in categories_liens_df.iterrows():
         url = row[1]['lien']
         category = row[1]['categorie']
         df = pd.DataFrame(get_books(url))
         df.to_csv("fichiers_csv/" + category + ".csv")
         df.apply(lambda r: get_book_picture(r["image_url"], r["upc"], category), axis=1)
-    chrono =datetime.datetime.now()
-    print('main fin: ',chrono)
+    #chrono =datetime.datetime.now()
+    #print('main fin: ',chrono)
 
+## Lancement du programme
 if __name__ == '__main__':
    main()
