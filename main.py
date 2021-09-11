@@ -33,10 +33,14 @@ def get_book_details(url_book):
     article_upc = str(soup.find('table', {'class': 'table table-striped'}).select('td')[0].text)
     #print('upc ',article_upc)
     price_excluding_tax = str(soup.find('table', {'class': 'table table-striped'}).select('td')[2].text)
+    price_excluding_tax = price_excluding_tax[1:7]
     #print('price_excluding_tax ', price_excluding_tax)
     price_including_tax = str(soup.find('table', {'class': 'table table-striped'}).select('td')[3].text)
+    price_including_tax = price_including_tax[1:7]
     #print('price_including_tax ', price_including_tax)
     number_available = str(soup.find('table', {'class': 'table table-striped'}).select('td')[5].text)
+    number_available = number_available.split(' (')
+    number_available = number_available[1].split(' available)')[0]
     #print('number_available ', number_available)
     product_description = str(soup.find('article', {'class': 'product_page'}).select('p')[3].text)
     category = str(soup.find('ul', {'class': 'breadcrumb'}).select('li')[2].text).replace("\n", '')
