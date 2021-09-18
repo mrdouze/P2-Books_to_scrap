@@ -26,7 +26,7 @@
 > cd formation_oc_python
 - lancez et activezl'environnement 
 > python -m venv venv
-> venv\Scripts\activate
+>>venv\Scripts\activate
 - installer les packages necessaires:
 >  python -m pip install -r requirements.txt
 - Lancer le script:
